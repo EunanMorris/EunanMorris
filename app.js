@@ -2,20 +2,13 @@ const express = require("express")
 const gun = require("gun")
 const app = express()
 const port = 3000
-const https = require('https')
+const http = require('http')
 const fs = require('fs')
 const path = require('path')
 
-const sslServer =https.createServer(
+const server = http.createServer()
 
-    {
-        key: fs.readFileSync(path.join(__dirname, 'SSL Cert', 'server.key')),
-        cert: fs.readFileSync(path.join(__dirname,'SSL Cert', 'server.cert')),
-    },
-   app
-)
-
-sslServer.listen(port,() =>{
+    server.listen(process.env.PORT,() =>{
     console.log("Gun server is listening at port 3000" )})
 
 
